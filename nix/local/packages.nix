@@ -21,7 +21,19 @@ with inputs.nixpkgs; let
     subPackages = "cmd/cantod";
     doCheck = false;
   };
+  cantod_8_1_1 = buildGoModule rec {
+    pname = "cantod";
+    version = "8.1.1";
+    src = fetchurl {
+      sha256 = "sha256-6VI3lo5JnUXonz0ZAFe2x9C1R2oFpbd1HAYTYY6GGts=";
+      url = "https://github.com/Canto-Network/Canto/archive/refs/tags/v${version}.tar.gz";
+    };
+    vendorHash = "sha256-ngnlPV2Tf8SlKnn4PifxTEailOeXn7otazCuHRZH+oQ=";
+    subPackages = "cmd/cantod";
+    doCheck = false;
+  };
 in {
   inherit cantod_7_0_1;
   inherit cantod_8_0_0;
+  inherit cantod_8_1_1;
 }
